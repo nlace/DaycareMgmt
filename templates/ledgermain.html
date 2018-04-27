@@ -1,0 +1,27 @@
+<%include file="/header.html"/>
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+
+
+<!-- LedgerMain.html -->
+
+<title>Ledger Summary</title>			
+
+Sorted by amount owing.
+
+%for t in test:
+<fieldset>
+<Legend>${t[0]}</Legend>
+	
+	%for tt in t[1]:
+		<b><a href="ledger?rid=${tt[1]}">${tt[0]}</a></b>:  $${tt[2]}<br>
+	%endfor
+	<br>
+	Account Total: $${t[2]}
+</fieldset>
+%endfor
+
+
+
+</div>
+

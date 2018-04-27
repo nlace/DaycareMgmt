@@ -1,0 +1,36 @@
+<%include file="/header.html"/>
+<title>All Children</title>
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+<h3>All Children</h3>
+<div class="fcontainer">
+
+%for c in info:
+<%
+if c[3]==None:
+	pic='none.jpg'
+else:
+	pic=c[3]
+%>
+<div class= "childbubble floatl" >
+<center>
+<form action=checkin method=post>
+<input type=hidden name=childid value='${c[2]}'>
+<table>
+<tr>
+	<td><center>${c[0]}</center></td>
+</tr>
+<tr>
+	<td><a  href="child?rid=${c[2]}"><img class="kidpic" src="res/child/${pic}" alt="${c[0]}" width=100%></a></td>
+</tr>
+
+</table>
+</form>
+</center>
+</div>
+%endfor
+
+</div>
+<a href="children?allch=1">Include Inactive</a>
+
+</div>

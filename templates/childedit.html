@@ -1,0 +1,93 @@
+<%include file="/header.html"/>
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+
+<fieldset>
+
+<Legend>Can Be Picked Up By</Legend>
+%for parent in p:
+<div class= "largerad solidb  floatl ${parent[4]}" >
+<pre>
+${parent[0]}
+${parent[1]}
+${parent[2]}
+${parent[3]}
+</pre>
+<a class="ui-button ui-widget ui-corner-all" href="adultremove?ID=${parent[3]}">Remove</a><br>
+<a class="ui-button ui-widget ui-corner-all" href="ppromote?cid=${rid}&pid=${parent[3]}">Promote</a><br>
+${parent[3]}-${parent[4]}
+</div>
+%endfor
+
+
+<div class= "largerad solidb  floatl" >
+<form action="addperm" method=post>
+<input type=hidden name=rid value='${rid}'>
+<table>
+<tr>
+<td>Adult</td>
+<td>
+<select name=pid>
+%for adult in adults:
+<option value="${adult[0]}">${adult[1]}</option>
+%endfor
+</select>
+</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>
+<select name=type>
+<option value="parent">Parent</option>
+<option value="emergency">Emergency</option>
+</select>
+</td>
+</tr>
+<tr>
+<td>Approved by</td>
+<td>
+<input type=text name='approval' value=''>
+</td>
+</tr>
+</table>
+<input class="ui-button ui-widget ui-corner-all"  type=submit value=Add>
+</form>
+</div>
+</fieldset>
+
+<fieldset>
+<Legend>Edit Child</Legend>
+
+
+
+<form method=post action=childedit enctype='multipart/form-data'>
+<table>
+<tr><td>Name</td><td><input type=text name=name value='${child[0]}'><br></td></tr>
+<tr><td>DOB</td><td><input type=text name=age value='${child[1]}'><br></td></tr>
+<tr><td>Restrictions</td><td><textarea name='restrictions'>${child[2]}</textarea></td></tr>
+<tr><td>Rate (Use to override defaults)</td><td><input type=text name=rate value='${child[3]}'><br></td></tr>
+<tr><td>Photo</td><td> <img src="res/child/p${rid}.jpg" alt="${child[0]}"><br><input type=file name=photo >  </td></tr>
+<tr><td>4Cs?</td><td><input type=checkbox name=is4cs ${checkboxes[0]}>  </td></tr>
+<tr><td>Active/Inactive</td><td><input type=checkbox name=active ${checkboxes[1]}>    </td></tr>
+
+<tr><td></td><td><input class="ui-button ui-widget ui-corner-all"  type=submit value='Update'></td></tr>
+</table>
+<input type=hidden name=rid value='${rid}'>
+</form>
+</fieldset>
+
+
+<fieldset>
+<Legend>Edit Time Entries</Legend>
+
+<table>
+<th>Name</th>
+<th>Date/Time</th>
+<th>Hours</th>
+<th>Remove</th>
+%for x in tcinfo:
+<tr><td>${x[2]}</td><td>${x[1]}</td><td>${x[0]}</td><td><a  href="cpunchremove?punchid=${x[3]}">Remove</a></td></tr>
+%endfor
+</table>
+</fieldset>
+</div>

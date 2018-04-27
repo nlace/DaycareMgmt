@@ -1,0 +1,34 @@
+<%include file="/header.html"/>
+<%include file="/buttons.html"/>
+
+<br>
+<fieldset>
+<Legend>Active Children</Legend>
+% for c in children:
+
+<table>
+<tr>
+<td><a href="child?rid=${c[0]}"><img src="res/child/p${c[0]}.jpg" alt="${c[1]}"></a></td>
+</tr>
+<tr>
+<td><center>${c[1]}</center></td>
+</tr>
+</table>
+%endfor
+<br>
+<a   class="ui-button ui-widget ui-corner-all"  href=newchild>New Child</a>
+</fieldset>
+
+
+<fieldset>
+<Legend>Active Providers</Legend>
+% for p in pv:
+<a href="provideredit?rid=${p[0]}"><img src="res/provider/p${p[0]}.jpg" alt="${p[1]}"></a>
+%endfor
+<br>
+<a  class="ui-button ui-widget ui-corner-all"  href=newprovider>New Provider</a>
+
+</fieldset>
+
+<a  class="ui-button ui-widget ui-corner-all"  href=parents>View Parents</a>
+

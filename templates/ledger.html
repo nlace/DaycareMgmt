@@ -1,0 +1,182 @@
+<%include file="/header.html"/>
+<%
+days = range(1,32)
+hours = range(1,13)
+minutes = range(0,60)
+months = range(1,13)
+%>
+<title>Ledger</title>
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+
+<fieldset>
+<legend>${child[0]}</legend>
+<a class="ui-button ui-widget ui-corner-all" href="invoice?rid=${rid}">Invoices </a>
+<a class="ui-button ui-widget ui-corner-all" href="child?rid=${rid}">View Child </a>
+<a class="ui-button ui-widget ui-corner-all" href="endofyear?rid=${rid}">End of Year 
+</a><br><br>
+
+
+<fieldset>
+<legend>New Payment</legend>
+<form action=ledger method=post>
+<input type=hidden name=ltype value="PMT">
+<input type=hidden name=rid value="${rid}">
+<table>
+<th>Year</th>
+<th>Month</th>
+<th>Day</th>
+<th>Type</th>
+<th>Amount</th>
+<th>Notes</th>
+<tr>
+	<td>
+		<select name="year">
+			<option value="${tinfo[2]}">${tinfo[2]}</option>
+			<option value="${tinfo[0]}">${tinfo[0]}</option>
+		</select>
+		
+	</td>
+	<td>
+		<select name="month">
+<option value="${tinfo[4]}" selected="selected">${tinfo[4]}</option>
+%for month in months:
+<option value="${month}">${month}</option>
+%endfor	
+		</select>
+	</td>
+	<td>
+		<select name="day">
+<option value="${tinfo[5]}" selected="selected">${tinfo[5]}</option>
+
+%for day in days:
+<option value="${day}">${day}</option>
+%endfor		
+
+		
+		</select>
+	</td>
+
+	<td><select name="ptype">
+	<option value="Parent">Parent</option>
+	<option value="4Cs">4Cs</option>
+	<option value="Write Off">Write off</option>
+	<option value="Barter">Barter</option>
+	<option value="Credit">Credit</option>
+	</select></td>
+
+	<td><input type=text name=amt></td>
+	<td><textarea name=notes></textarea></td>
+	<td><input class="ui-button ui-widget ui-corner-all"  type=submit value=Enter></td>
+</tr>
+</table>	
+
+</form>
+</fieldset>
+
+<!---  New Fee  --->
+
+<fieldset>
+<legend>New Charge</legend>
+<form action=ledger method=post>
+<input type=hidden name=ltype value="CRG">
+<input type=hidden name=rid value="${rid}">
+<table>
+<th>Year</th>
+<th>Month</th>
+<th>Day</th>
+
+<th>Amount</th>
+<th>Notes</th>
+<tr>
+	<td>
+		<select name="year">
+			<option value="${tinfo[2]}">${tinfo[2]}</option>
+			<option value="${tinfo[0]}">${tinfo[0]}</option>
+		</select>
+		
+	</td>
+	<td>
+		<select name="month">
+		<option value="${tinfo[4]}" selected="selected">${tinfo[4]}</option>
+
+%for month in months:
+<option value="${month}">${month}</option>
+%endfor	
+		</select>
+	</td>
+	<td>
+		<select name="day">
+<option value="${tinfo[5]}" selected="selected">${tinfo[5]}</option>
+
+%for day in days:
+<option value="${day}">${day}</option>
+%endfor		
+
+		
+		</select>
+	</td>
+
+
+
+	<td><input type=text name=amt></td>
+	<td><textarea name=notes></textarea></td>
+	<td><input class="ui-button ui-widget ui-corner-all"  type=submit value=Enter></td>
+</tr>
+</table>	
+
+</form>
+</fieldset>
+<table>
+<th></th>
+<th>Desc</th>
+<th align="right">Payments</th>
+<th align="right">Charges</th>
+<col width="10px">
+<col width="200px">
+<col width="250px">
+<col width="80px">
+<col width="80px">
+%for t in ledger:
+<%
+credit=''
+debit=''
+if t[2] > 0:
+	credit = t[2]
+	credit = "$%.2f" % credit
+else:
+	debit = -1 * t[2]
+	debit = "$%.2f" % debit
+%>
+
+<tr>
+	<td><a href="ledgerremove?rid=${rid}&ID=${t[3]}">x</a></td>
+	<td>
+<pre>
+${t[0]}
+${t[1]}
+</pre></td><td align="right">${debit}</td><td align="right">${credit}</td>
+</tr>
+%endfor
+%for t in total:
+
+<%
+credit=''
+debit=''
+if total > 0:
+	credit = t
+	credit = "$%.2f" % credit
+else:
+	debit = -1 * t
+	debit = "$%.2f" % debit
+%>
+<tr>
+	<td colspan=2 align="right"><b>Total</b></td><td align="right">${debit}</td><td align="right">${credit}</td>
+</tr>
+%endfor
+
+</table>
+</fieldset>
+
+</div>
+</html>

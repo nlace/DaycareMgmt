@@ -1,0 +1,57 @@
+<%include file="/header.html"/>
+<title>Parent Checkin Page</title>
+<META HTTP-EQUIV="refresh" CONTENT="30">
+
+<!-- checkinb.html -->
+
+<h3>Hello ${p[1]}</h3>
+
+
+
+<div class="fcontainer">
+
+<fieldset class="solidb largerad blackborder">
+<Legend>Children</Legend>
+%for c in info:
+<%
+if c[4]==None:
+	pic='none.jpg'
+else:
+	pic=c[4]
+%>
+<div class= "childbubble floatl ${c[3]}" >
+<center>
+<form action="parentcheckin" method=post>
+<input type=hidden name=childid value='${c[2]}'>
+<input type=hidden name=pin value='${pin}'>
+<input type=hidden name=parent value='${p[1]}'>
+
+<table>
+<tr>
+	<td><center>${c[0]}</center></td>
+</tr>
+<tr>
+	<td><img   class="kidpic" src="res/child/${pic}" alt="${c[0]}" width=100%></td>
+</tr>
+
+<tr>
+	<td><center>
+	
+	%if c[1] ==1:
+<input class="ui-button ui-widget ui-corner-all"  type=submit value='Check Out'></center></td>
+%else:
+<input class="ui-button ui-widget ui-corner-all"  type=submit value='Check In'></center></td>
+%endif	
+	
+	
+</tr>
+</table>
+</form>
+</div>
+%endfor
+
+</fieldset>
+</div>
+
+<a class="ui-button ui-widget ui-corner-all"  href="parentcheckin">Logout</a>
+

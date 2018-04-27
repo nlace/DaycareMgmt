@@ -1,0 +1,176 @@
+body{
+	background-color: #ededf9;
+}
+.pagecontainer{
+	width:350px;	
+}
+.loginform{
+	width:300px;
+	margin:auto;
+	border:3px solid black;
+	border-radius:8px;
+	text-align:center;
+}
+.childbubble{
+	border-color:black;
+	border-radius:8px;
+	border-style: solid;
+	padding-top: 15px;
+	padding-right: 15px;
+	padding-bottom: 0px;
+	padding-left: 15px;
+	width:200px;	
+	min-height:250px;
+
+}
+.kidpic{
+	max-width:190px;
+	max-height:150px;
+	}
+
+.diag{
+    font-size: 8pt;
+	}
+
+
+fieldset{
+
+	margin:0px 0px 5px 0px;
+	padding-top: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;	
+	background-color:white;
+	
+	border:3px solid black;
+}
+
+legend {
+  padding: 0.2em 0.5em;
+  border:2px solid black;
+  color:black;
+  font-size:90%;
+  text-align:right;
+  background-color:white;
+  border-radius:3px;
+}
+
+
+
+
+
+@media only screen and (min-width: 768px) {
+	.pagecontainer{
+		width:1100px;
+		background-color: #d6d6ff;
+		margin:auto;
+		border-color:darkgrey;
+		border-style:solid;
+		border-radius:10px;
+
+		padding-top: 15px;
+		padding-right: 15px;
+		padding-bottom: 15px;
+		padding-left: 15px;		
+
+	}
+
+	fieldset{
+		background-color: #ededf9;	
+	}
+	legend{
+		background-color: #ededf9;
+	}
+
+}
+
+
+
+
+
+
+
+.largerad{
+	border-radius:8px
+}
+
+.solidb{
+	border-style: solid;
+	margin:0px 0px 5px 0px;
+	padding-top: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;	
+}
+
+.childw{
+	width:325px;
+}
+.pwidth{
+	width:150px;
+	overflow: hidden;
+}
+
+.floatl{
+	float:left;
+	margin:5px 5px 5px 5px;
+}
+
+.floatr{
+	float:right;
+	margin:5px 5px 5px 5px;
+}
+
+.fcontainer {
+
+	clear: both;
+	overflow: hidden;
+}
+
+
+.invwidth{
+	font-size:16px;
+}
+
+.leblock{
+	display:block;
+}
+.blackborder{
+	border-color:black;
+}
+
+
+
+.Bparent{
+	
+	border-color:black;
+}
+
+.parent{
+	border-color:blue;
+	
+}
+.emergency{
+	border-color:red;
+	
+}
+
+
+.invdetail{
+	font-size:20px
+}
+.invmisc{
+	font-size:20px;
+	
+}
+
+
+@media print {
+    .invcontainer { 
+        width: 8in;
+        height: 10in;
+    }
+	.noprint {
+		display:none;
+	}
+}

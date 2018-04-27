@@ -1,0 +1,19 @@
+<%include file="/header.html"/>
+
+<div class="pagecontainer">
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+<%include file="/buttons.html"/>
+<title>Generic Info</title>
+
+<h1>Info</h1>
+${info}
+
+<br>
+<button class="ui-button ui-widget ui-corner-all" onclick="goBack()">Go Back</button>
+
+</div>

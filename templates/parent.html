@@ -1,0 +1,92 @@
+<%include file="/header.html"/>
+<div class="pagecontainer">
+
+<%include file="/buttons.html"/>
+<title>Parent Detail</title>
+
+
+<fieldset>
+<Legend>${p[0]} - ${p[3]}</Legend>
+<form action=parent method=post>
+<input type=hidden name="pid" value="${p[7]}">
+<table>
+<tr>
+<td>Name</td>
+<td><input type=text name="pname" value="${p[0]}"></td>
+</tr>
+<tr>
+<td>Phone</td>
+<td><input type=text name="phone" value="${p[1]}"></td>
+</tr>
+
+<tr>
+<td>Email</td>
+<td><input type=text name="email" value="${p[2]}"></td>
+</tr>
+
+<tr>
+<td>Address</td>
+<td><textarea name="address">${p[4]}</textarea></td>
+</tr>
+
+<tr>
+<td>Workplace</td>
+<td><input type=text name="workplace" value="${p[5]}"></td>
+</tr>
+
+<tr>
+<td>Work Phone</td>
+<td><input type=text name="workphone" value="${p[6]}"></td>
+</tr>
+
+
+<tr>
+<td>Emergency Contact</td>
+<td><textarea name="econtact">${p[8]}</textarea></td>
+</tr>
+
+</table>
+
+<input class="ui-button ui-widget ui-corner-all" type=submit value='Update'>
+
+</form>
+</fieldset>
+
+%for c in x:
+<fieldset>
+<Legend>${c[0]}</Legend>
+DOB: ${c[3]}<br>
+Restrictions: ${c[4]}<br>
+Activity<br>
+<a href='childedit?rid=${c[2]}'><img src="res/child/p${c[2]}.jpg" alt="No Photo"></a><br>
+
+<table >
+<col width="400">
+<col width="80">
+<col width="80">
+<col width="80">
+<th>Attendance</th>
+<th align="right">Hours</th>
+<th align="right">Rate</th>
+<th align="right">Cost</th>
+%for t in c[5]:
+<tr>
+<td>${t[0]}</td>
+<td align="right">${t[1]}</td>
+<td align="right">$${t[2]} / hr</td>
+<td align="right">$${t[3]}</td>
+</tr>
+%endfor
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td align="right">$${c[6]}</td>
+</tr>
+</table>
+
+
+</fieldset>
+%endfor
+
+</div>

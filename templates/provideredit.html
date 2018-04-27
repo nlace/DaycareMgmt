@@ -1,0 +1,40 @@
+<%include file="/header.html"/>
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+
+<fieldset>
+<Legend>Edit Provider</Legend>
+<form method=post action=provideredit enctype='multipart/form-data'>
+<table>
+<tr><td>Name</td><td><input type=text name=name value='${provider[0]}'><br></td></tr>
+<tr><td>Phone</td><td><input type=text name=phone value='${provider[1]}'><br></td></tr>
+<tr><td>Rate</td><td><input type=text name=rate value='${provider[2]}'><br></td></tr>
+
+<tr><td>Photo</td><td> <img src="res/provider/p${rid}.jpg" alt="${provider[0]}"><br><input type=file name=photo >  </td></tr>
+<tr><td></td><td><input class="ui-button ui-widget ui-corner-all"  type=submit value='Update'></td></tr>
+</table>
+<input type=hidden name=rid value='${rid}'>
+</form>
+</fieldset>
+
+
+<fieldset>
+<Legend>Time Info</Legend>
+<table border=1px >
+<th>Range</th>
+<th>Duration</th>
+<th>Rate</th>
+%for t in timeinfo:
+<tr>
+	<td>${t[0]}</td>
+	<td>${t[1]}</td>
+	<td>${t[2]}</td>
+</tr>
+%endfor
+<table>
+Total $${ptotal}
+
+</fieldset>
+
+</div>
+

@@ -1,0 +1,33 @@
+<%include file="/header.html"/>
+
+<div class="pagecontainer">
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+<%include file="/buttons.html"/>
+<title>Confirm Action</title>
+<h1>Please Confirm Action</h1>
+${desc}
+<br>
+
+%for i in entry:
+%for item in i:
+${item}<br>
+%endfor
+<br>
+%endfor
+
+<form action="${handler}" method=post>
+%for arg in args:
+<input type="hidden" name="${arg[0]}" value="${arg[1]}">
+%endfor
+<input type="hidden" name="confirm" value="1">
+<input type=submit  class="ui-button ui-widget ui-corner-all" value="Confirm">
+</form>
+<br>
+<button class="ui-button ui-widget ui-corner-all" onclick="goBack()">Go Back</button>
+
+</div>

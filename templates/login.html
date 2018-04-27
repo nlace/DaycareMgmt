@@ -1,0 +1,21 @@
+<%include file="/header.html"/>
+<title>Login Please</title>
+
+<br>
+<br>
+<br>
+<br>
+<div class="loginform">
+<h3>Login Please</h3>
+<form action=login method=post>
+<select name=user>
+%for user in users:
+<option value="${user[0]}">${user[1]}</option>
+%endfor
+</select>
+<input type=password name=pw><br>
+<br>
+<input type=submit  class="ui-button ui-widget ui-corner-all" value='Log In'>
+</form>
+</div>
+${ip}

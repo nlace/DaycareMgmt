@@ -1,0 +1,20 @@
+<%include file="/header.html"/>
+
+<div class="pagecontainer">
+<script>
+function goBack() {
+    window.history.back();
+}
+</script>
+
+<%include file="/buttons.html"/>
+<title>Error!</title>
+<center>
+<h1>Error!</h1>
+</center>
+${info}
+
+<br>
+<button class="ui-button ui-widget ui-corner-all" onclick="goBack()">Go Back</button>
+
+</div>

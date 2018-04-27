@@ -1,0 +1,102 @@
+% This is the master file for formatting a letter to fit
+% in a double window envelope.
+% The margins have been customized extensively.
+% This template can be called from within a tex file with the
+% following line at the top of the document:
+% \documentclass[lace.lco]{scrlttr2}
+
+\ProvidesFile{lace.lco}[%
+ 2002/07/09 v0.9a LaTeX2e unsupported letter-class-option]
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{palatino}
+\usepackage[final]{pdfpages}
+\usepackage[english]{babel}
+\usepackage{scrpage2}
+\usepackage{booktabs}
+\usepackage{marvosym}
+\usepackage{eso-pic} % allows import of eps
+
+% ==============================================
+%  PERSONAL DATA
+% ==============================================
+\setkomavar{fromname}{\textbf{Bright Beginnings Childcare}}
+\setkomavar{fromaddress}{3400 Hill Ave \\ Butte, MT 59701}
+
+
+%\setkomavar{place}{Butte, MT}
+%\setkomavar{fromlogo}{\includegraphics[width=3cm]{./res/LDCLogo.png}} %Uses PDF
+\setkomavar{backaddress}{From: \textbf{nada}\\nada\\nada}
+
+% ==============================================
+%  CUSTOM FORMATTING
+% ==============================================
+\pagestyle{scrheadings}
+\cfoot[scrplain-centered ]{}
+\geometry{letterpaper,lmargin=0.5in,rmargin=0.5in, bmargin=0.5in,headsep=0.5in}
+%,tmargin=1.5in,bmargin=1.0in,headsep=1in
+\setlength{\parskip}{\medskipamount}
+\setlength{\parindent}{0pt}
+\makeatletter
+
+\@setplength{firstheadhpos}{0.5in} % horizontal position of the letterhead
+\@setplength{firstheadvpos}{0.85in} % vertical position of the letterhead
+\@setplength{firstheadwidth}{7.5in} % horizontal position of the letterhead
+
+\@setplength{specialmailindent}{2.0in} % horizontal position of the letterhead
+\@setplength{toaddrhpos}{0.5in} % horizontal position of the address field
+\@setplength{toaddrvpos}{2.2in} % top of retr addr
+\@setplength{toaddrheight}{1.1in}
+\@setplength{refvpos}{3.6in} % vertical position of ref line (date)
+%\@setplength{refaftervskip}{4cm} % space between ref line and letter text
+
+\@setplength{sigbeforevskip}{0mm} % space for signature image
+\@setplength{tfoldmarkvpos}{3.9in} % top fold mark
+\@setplength{tfoldmarklength}{4mm} % top fold mark
+
+\@setplength{bfoldmarkvpos}{7.5in} % bottom fold mark
+\@setplength{bfoldmarklength}{4mm} % bottom fold mark
+
+\@setplength{foldmarkhpos}{6mm} % bottom fold mark
+
+
+%\@setplength{firstfootvpos}{10.4in} % top of footer
+
+
+
+
+
+\makeatother
+\renewcommand*{\raggedsignature}{}
+\setkomavar{firsthead}{\centering\usekomavar{fromlogo}\hspace*{8cm}}
+%\ihead{\usekomavar{toname}\\Page \thepage\\\usekomavar{date}}
+
+%\setkomavar{firstfoot}{\centering \scriptsize This is the footer text}
+
+\KOMAoptions{%
+paper=letter,
+fontsize=12pt,
+%headsepline=true,%            separate the header with a line on page >1
+%,footsepline=true%             separate the footer with a line on page >1
+%,pagenumber=botcenter%   position of the page number (see docu)
+%,parskip=false%          Use indent instead of skip (more options cf. docu)
+fromalign=left%        alignment of the address
+,fromrule=afteraddress%    separate the address with a line?
+%,fromphone=true%         print sender phone number
+%,fromfax=true%          print sender fax number
+%,fromemail=true%           print sender e-mail address
+%,fromurl=true%               print sender URL
+%,fromlogo=true%         print a logo (position depends on fromalign)
+%,addrfield=false%        print an address field?
+,backaddress=false%  print the back address?
+%,subject=afteropening,titled% alternative subject layout and position
+%,locfield=narrow%      width of the (extra) location field
+,foldmarks=BlmpT%      print foldmarks?
+%,numericaldate=true%  date layout
+%,refline=wide%             layout of the refline
+}
+
+\widowpenalty=5000
+\clubpenalty=5000
+
+\endinput

@@ -1,0 +1,40 @@
+<%include file="/header.html"/>
+
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+
+
+
+<fieldset>
+<Legend>New Child</Legend>
+
+
+<form method=post action=newchild enctype='multipart/form-data'>
+<table>
+<tr><td>Parent</td><td>
+<select name=parent >
+%for p in parents:
+<option value="${p[0]}">${p[1]}</option>
+%endfor
+</select>
+</td></tr>
+
+</div>
+
+
+
+<tr><td>Name</td><td><input type=text name=name ><br></td></tr>
+<tr><td>DOB</td><td><input type=text name=dob value="yyyy-mm-dd" ></td></tr>
+<tr><td>Allergies</td><td><textarea name=allergies ></textarea></td></tr>
+<tr><td>Immunizations Current</td><td><input type=checkbox name=immunization>  </td></tr>
+
+<tr><td>Photo</td><td> <input type=file name=photo >  </td></tr>
+
+<tr><td></td><td><input class="ui-button ui-widget ui-corner-all"  type=submit value='Update'></td></tr>
+</table>
+
+</form>
+</fieldset>
+
+
+

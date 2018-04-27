@@ -1,0 +1,53 @@
+\documentclass[version=last,res/lace]{scrlttr2}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage{colortbl}
+\begin{document}
+
+<%
+pname = p1[0][0]
+paddy = p1[0][1]
+paddy = paddy.replace('#', "\#")
+paddy = paddy.replace('$', "\$")
+
+paddy = paddy.split('\n')
+%>
+
+\begin{letter}{
+${pname} \\\
+%for line in paddy:
+${line} \\\
+%endfor
+}
+\setkomavar{subject}{End of ${month} statement for ${c[0]}}
+
+\opening{}
+
+\noindent\rule{7in}{0.4pt}\\\
+Account Detail
+\begin{longtable}{|l|p{3.5in}|r|r|r|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Date}} & \multicolumn{1}{c|}{\textbf{Desc}} & \multicolumn{1}{c|}{\textbf{Payment}} & \multicolumn{1}{c|}{\textbf{Charge}} & \multicolumn{1}{c|}{\textbf{Balance}} \\ \hline
+%for t in ledger:
+<%
+if t[4] > 0:
+	bal = "(\$%.2f)" % (t[4])
+else:
+	bal = "\$%.2f" % (-1*t[4])
+%>
+
+${t[0]}  &{${t[1]} }& ${t[2]} & ${t[3]}& ${bal} \\ \arrayrulecolor{gray}\hline
+
+%endfor
+\hline
+\end{longtable}
+
+\end{letter}
+\end{document} 

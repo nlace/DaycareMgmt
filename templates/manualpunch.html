@@ -1,0 +1,131 @@
+<%include file="/header.html"/>
+
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+
+
+<%
+days = range(1,32)
+hours = range(1,13)
+minutes = range(0,60)
+%>
+<fieldset>
+<Legend>Manual Timeclock Entry</Legend>
+<form method=post action="cpunchmanual">
+
+
+<table>
+<tr>
+	<td>Child</td>
+	<td>
+		<select name="rid">
+
+%for kid in children:
+<option value="${kid[1]}">${kid[0]}</option>
+%endfor		
+
+		
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>Year</td>
+	<td>
+		<select name="year">
+		<option value="${tinfo[4]}">${tinfo[4]}</option>
+		<option value="${tinfo[5]}">${tinfo[5]}</option>		
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>Month</td>
+	<td>
+		<select name="month">
+		<option value="${tinfo[3]}">${tinfo[2]}</option>
+		<option value="${tinfo[1]}">${tinfo[0]}</option>		
+		</select>
+	</td>
+</tr>
+<tr>
+	<td>Day</td>
+	<td>
+		<select name="day">
+
+%for day in days:
+<option value="${day}">${day}</option>
+%endfor		
+
+		
+		</select>
+	</td>
+</tr>
+
+<tr>
+<td>In</td>
+<td>
+<select name="inhour">
+%for h in hours:
+<option value="${h}">${h}</option>
+%endfor
+</select>
+:
+<select name="inminute">
+%for h in minutes:
+<option value="${h}">${h}</option>
+%endfor
+</select>
+<select name="inampm"><option value="0">AM</option><option value="1">PM</option></select>
+</td>
+</tr>
+
+<tr>
+<td>Out</td>
+<td>
+<select name="outhour">
+%for h in hours:
+<option value="${h}">${h}</option>
+%endfor
+</select>
+:
+<select name="outminute">
+%for h in minutes:
+<option value="${h}">${h}</option>
+%endfor
+</select>
+<select name="outampm"><option value="0">AM</option><option value="1">PM</option></select>
+</td>
+</tr>
+
+
+
+
+
+<tr><td></td><td><input class="ui-button ui-widget ui-corner-all" type=submit value="Add Entry"></td></tr>
+</table>
+
+</form>
+</fieldset>
+
+<table>
+<th>Name</th>
+<th>Date/Time</th>
+<th>Hours</th>
+<th>Remove</th>
+%for x in infos:
+
+<%
+dur = float(x[0])
+%>
+
+%if dur > 12:
+<tr bgcolor="red" ><td><a href="child?rid=${x[4]}">${x[2]}</a></td><td>${x[1]}</td><td>${x[0]}</td><td><a  href="cpunchremove?punchid=${x[3]}">Remove</a></td></tr>
+%elif dur < 0.05:
+<tr bgcolor="orange" ><td><a href="child?rid=${x[4]}">${x[2]}</a></td><td>${x[1]}</td><td>${x[0]}</td><td><a  href="cpunchremove?punchid=${x[3]}">Remove</a></td></tr>
+%else:
+<tr bgcolor=""><td><a href="child?rid=${x[4]}">${x[2]}</a></td><td>${x[1]}</td><td>${x[0]}</td><td><a  href="cpunchremove?punchid=${x[3]}">Remove</a></td></tr>
+%endif
+
+%endfor
+</table>
+
+</div>

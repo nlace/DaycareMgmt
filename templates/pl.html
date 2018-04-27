@@ -1,0 +1,91 @@
+<%include file="/header.html"/>
+<div class="pagecontainer">
+
+<%include file="/buttons.html"/>
+<title>PL - ${offsets[3]}</title>
+
+<a class="ui-button ui-widget ui-corner-all" href="pl?offset=${offsets[2]}">Previous Month</a>
+${offsets[3]}
+                           
+<a class="ui-button ui-widget ui-corner-all" href="pl?offset=${offsets[1]}">Next Month</a>
+                                                               <br>
+                                                               <br>
+
+
+<table>
+<tr>
+	<td>Total Income For This Month</td><td align=right>$${totalrev}</td>
+</tr>
+<tr>
+	<td>Total Labor Dollars For This Month</td><td align=right>$${totallabor}</td>
+</tr>
+<tr>
+	<td>Total Labor Hours For This Month</td><td align=right>${laborinfo[0]}</td>
+</tr>
+<tr>
+	<td>Total Charge offs For This Month</td><td align=right>$${chargeoff}</td>
+</tr>
+<tr>
+	<td>Net Income For This Month</td><td align=right>$${netincome}</td>
+</tr>
+</table>
+<br>
+% if offsets[0] < 0: 
+<a class="ui-button ui-widget ui-corner-all" href="invoiceall?offset=${offsets[0]}">Generate all Invoices for ${offsets[3]} - Only Click Once!!!</a>
+% else:
+!!  Can't batch generate invoices for the current month !!
+% endif
+
+<fieldset>
+<Legend>Providers</Legend>
+<table>
+<th>Name</th>
+<th>Amount</th>
+%for p in providers:
+<tr>
+	<td><a href="provideredit?rid=${p[2]}">${p[0]}</a></td>
+	<td>$ ${p[1]}</td>
+</tr>
+%endfor
+</table>
+</fieldset>	
+	
+%for c in children:
+<fieldset>
+<Legend>${c[0]}</Legend>
+DOB: ${c[3]}<br>
+Restrictions: ${c[4]}<br>
+<a href='ledger?rid=${c[2]}'><img class="kidpic" src="res/child/p${c[2]}.jpg" alt="No Photo"></a><br>
+
+<table >
+<col width="400">
+<col width="80">
+<col width="80">
+<col width="80">
+<th>Attendance</th>
+<th align="right">Hours</th>
+<th align="right">Rate</th>
+<th align="right">Cost</th>
+%for t in c[5]:
+<tr>
+<td>${t[0]}</td>
+<td align="right">${t[1]}</td>
+<td align="right">$${t[2]} / hr</td>
+<td align="right">$${t[3]}</td>
+</tr>
+%endfor
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td align="right">$${c[6]}</td>
+</tr>
+</table>
+
+
+</fieldset>
+%endfor
+
+
+</div>
+<%include file="/footer.html"/>

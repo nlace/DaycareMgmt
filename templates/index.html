@@ -1,0 +1,73 @@
+<%include file="/header.html"/>
+<META HTTP-EQUIV="refresh" CONTENT="30">
+
+<div class="pagecontainer">
+
+<%include file="/buttons.html"/>
+<title>Daycare Management Main</title>
+
+
+<br>
+<fieldset class="solidb largerad blackborder">
+<Legend>Active Children</Legend>
+% for c in children:
+<%
+if c[2]==None:
+	pic='none.jpg'
+else:
+	pic=c[2]
+%>
+<div class= "childbubble floatl" >
+<center>
+<table>
+<tr>
+<td><a href="child?rid=${c[0]}"><img  class="kidpic"  src="res/child/${pic}" alt="${c[1]}" width='100%'></a></td>
+</tr>
+<tr>
+<td><center>${c[1]}</center></td>
+</tr>
+</table>
+</center>
+</div>
+%endfor
+<br>
+
+</fieldset>
+
+
+<fieldset class="solidb largerad blackborder">
+<Legend>Active Providers</Legend>
+% for p in pv:
+<div class= "childbubble floatl" >
+<center>
+<table>
+<tr>
+<td><a href="provideredit?rid=${p[0]}"><img src="res/provider/p${p[0]}.jpg" alt="${p[1]}" width='100%'></a></td>
+</tr>
+<tr>
+<td><center>${p[1]}</center></td>
+</tr>
+</table>
+</center>
+</div>
+
+%endfor
+<br>
+
+</fieldset>
+
+<!-- <fieldset class="solidb largerad blackborder">
+<Legend>Recent Activity</Legend>
+% for c in activity:
+${c[0]} at ${c[1]}<br>
+%endfor
+</fieldset> -->
+
+<br>
+
+<a   class="ui-button ui-widget ui-corner-all"  href=newchild>New Child</a>
+<a  class="ui-button ui-widget ui-corner-all"  href=children>View Children</a>
+<a  class="ui-button ui-widget ui-corner-all"  href=parents>View Adults</a>
+<a  class="ui-button ui-widget ui-corner-all"  href=newprovider>New Provider</a>
+
+</div>

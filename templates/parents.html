@@ -1,0 +1,23 @@
+<%include file="/header.html"/>
+<div class="pagecontainer">
+
+<%include file="/buttons.html"/>
+
+<a  class="ui-button ui-widget ui-corner-all"  href=newparent>New Adult</a>
+
+<br>
+%for p in parents:
+<fieldset>
+<Legend>${p[1]}</Legend>
+Phone: ${p[2]}<br>
+Email: ${p[3]}<br>
+
+Address: ${p[5]}<br>
+Workplace: ${p[6]}<br>
+Workphone: ${p[7]}<br>
+<a  class="ui-button ui-widget ui-corner-all"  href="parent?pid=${p[0]}">View Details</a>
+</fieldset>
+
+%endfor
+</div>
+

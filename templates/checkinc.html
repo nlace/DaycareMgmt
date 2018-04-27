@@ -1,0 +1,153 @@
+<%include file="/header.html"/>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+
+suc=0;
+function worker() {
+ $.ajax({
+    url: 'https://www.nick-lace.com/legiondaycare/index', 
+    success: function(data) {   
+	suc=1;
+	location.reload();
+	 },
+    complete: function(){
+	setTimeout(worker,60000);
+         }
+  });
+};
+
+
+setTimeout(worker, 60000);
+
+});
+</script>
+
+
+
+<title>Provider Checkin Page</title>
+<div class="pagecontainer" id="lemaindiv">
+
+%if diag[2] == 'clockonly':
+<a class="ui-button ui-widget ui-corner-all" href='logout'>Logout</a>
+<br>
+<br>
+%else:
+
+<%include file="/buttons.html"/>
+<br>
+<a class="ui-button ui-widget ui-corner-all" href='downgrade'>Downgrade Session</a>
+
+%endif
+
+
+%if len(errors) > 0:
+<fieldset class="solidb largerad blackborder">
+<Legend>Errors</Legend>
+2018-03-27: Added timeclock error detection (Entries that break P&L calculations, daily caps, labor overrun, etc)
+<br><br>
+%for error in errors:
+
+${error}<br>
+
+%endfor
+** These entries will require manual adjustment ***
+</fieldset>
+%endif
+
+
+
+<!-- checkinc.html -->
+<fieldset class="solidb largerad blackborder">
+<Legend>Providers</Legend>
+%for c in provinfo:
+<%
+if c[3]==None:
+	pic='none.jpg'
+else:
+	pic=c[3]
+%>
+<div class= "childbubble floatl" >
+	<center>
+		<form action=pcheckin method=post>
+			<input type=hidden name=provid value='${c[2]}'>
+			<table>
+			<tr>
+				<td><center>${c[0]}</center></td>
+			</tr>
+			<tr>
+				<td><img class="kidpic" src="res/provider/${pic}" alt="${c[0]}" width=100%></td>
+			</tr>
+
+			<tr>
+				<td><center>
+				
+				%if c[1] ==1:
+			<input class="ui-button ui-widget ui-corner-all"  type=submit value='Check Out'></center></td>
+			%else:
+			<input class="ui-button ui-widget ui-corner-all"  type=submit value='Check In'></center></td>
+			%endif	
+				
+				
+			</tr>
+			</table>
+		</form>
+	</center>
+</div>
+
+%endfor
+
+
+</fieldset>
+
+
+<fieldset class="solidb largerad blackborder">
+<Legend>Children</Legend>
+
+%for c in info:
+<%
+if c[3]==None:
+	pic='none.jpg'
+else:
+	pic=c[3]
+%>
+<div class= "childbubble floatl" >
+<center>
+<form action=checkin method=post>
+<input type=hidden name=parent value='Provider'>
+<input type=hidden name=childid value='${c[2]}'>
+<table>
+<tr>
+	<td><center>${c[0]}</center></td>
+</tr>
+<tr>
+	<td><img class="kidpic" src="res/child/${pic}" alt="${c[0]}" width=100%></td>
+</tr>
+
+<tr>
+	<td><center>
+	
+	%if c[1] ==1:
+<input class="ui-button ui-widget ui-corner-all"  type=submit value='Check Out'></center></td>
+%else:
+<input class="ui-button ui-widget ui-corner-all"  type=submit value='Check In'></center></td>
+%endif	
+	
+	
+</tr>
+</table>
+</form>
+</center>
+</div>
+%endfor
+
+</fieldset>
+%for c in diag:
+${c}
+%endfor
+
+</div>

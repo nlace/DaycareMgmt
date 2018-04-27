@@ -1,0 +1,62 @@
+\documentclass[version=last,res/lace]{scrlttr2}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{url}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{longtable}
+
+\begin{document}
+
+<%
+pname = p1[0][0]
+paddy = p1[0][1]
+paddy = paddy.replace('#', "\#")
+paddy = paddy.replace('$', "\$")
+
+paddy = paddy.split('\n')
+%>
+
+\begin{letter}{
+${pname} \\\
+%for line in paddy:
+${line} \\\
+%endfor
+}
+\setkomavar{subject}{ ${month} ${c[0]}}
+\setkomavar{date}{Invoice: ${invid} }
+\opening{}
+
+\noindent\rule{7in}{0.4pt}\\\
+Activity for ${month} 
+\begin{longtable}{p{4in}llr}
+\multicolumn{1}{c}{\textbf{Attendance}} & \multicolumn{1}{c}{\textbf{Hours}} & \multicolumn{1}{c}{\textbf{Rate}} & \multicolumn{1}{c}{\textbf{Cost}} \\\
+
+%for t in c[5]:
+${t[0]}  & ${t[1]} & \$${t[2]} / hr & \$${t[3]} \\\
+
+%endfor
+	&	&	& \$${c[6]}
+\end{longtable}
+
+\noindent\rule{7in}{0.4pt}\\\
+Account
+\begin{longtable}{|l|p{4in}|r|r|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Date}} & \multicolumn{1}{c|}{\textbf{Desc}} & \multicolumn{1}{c|}{\textbf{Credit}} & \multicolumn{1}{c|}{\textbf{Charge}} \\ \hline
+%for t in ledger:
+
+${t[0]}  &{${t[1]} }& ${t[2]} & ${t[3]} \\\
+
+%endfor
+\hline
+  & {\bf Current Balance} &{\bf  ${linfo[2]} }&{\bf  ${linfo[3]} }\\\
+\hline
+
+\end{longtable}
+
+\end{letter}
+\end{document} 

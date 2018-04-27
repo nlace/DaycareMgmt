@@ -1,0 +1,26 @@
+<%include file="/header.html"/>
+<title>New Adult</title>
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+
+
+<fieldset>
+<Legend>New Adult</Legend>
+<form method=post action=newparent enctype='multipart/form-data'>
+<table>
+<tr><td>Name</td><td><input type=text name=name></td></tr>
+<tr><td>Phone</td><td><input type=text name=phone ></td></tr>
+<tr><td>Email</td><td><input type=text name=email ></td></tr>
+<tr><td>Address</td><td><textarea name=address></textarea></td></tr>
+
+<tr><td>Workplace</td><td><input type=text name=workplace ></td></tr>
+<tr><td>Work Phone</td><td><input type=text name=workphone ></td></tr>
+<tr><td>Emergency Contact</td><td><textarea name=emergencycontact></textarea></td></tr>
+
+<tr><td></td><td><input class="ui-button ui-widget ui-corner-all"  type=submit value='Add Adult'></td></tr>
+</table>
+</form>
+</fieldset>
+
+
+</div>

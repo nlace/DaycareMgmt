@@ -1,0 +1,79 @@
+<%include file="/header.html"/>
+<%
+b = adj-1
+f = adj+1
+%>
+<title>Invoice ${month}</title>
+<div class="noprint">
+<a class="ui-button ui-widget ui-corner-all" href="invoice?rid=${rid}&adj=${b}">-</a> 
+<a class="ui-button ui-widget ui-corner-all" href="invoice?rid=${rid}&adj=${f}">+</a>
+${month} 
+<a class="ui-button ui-widget ui-corner-all" href="invoice?rid=${rid}&pdf=1&adj=${adj}">PDF</a>
+</div>
+<div class="invcontainer">
+<div class="solidb largerad invwidth fcontainer invmisc">
+%for p in p1:
+<div class="floatl">
+<pre>
+
+
+
+${p[0]}
+${p[1]}
+</pre>
+</div>
+<div class="floatr">
+<b>${month} Invoice</b><br>
+<br>
+Bright Beginnings Child Care<br>
+
+3400 Hill Ave #305<br>
+Butte, MT 59701
+</div>
+
+%endfor
+</div>
+<div class="solidb largerad invwidth invmisc">
+
+Child Name: ${c[0]}<br>
+${lm} to ${mb}<br>
+<table class="invdetail">
+<col width="450">
+<col width="85">
+<col width="85">
+<col width="80">
+<th>Attendance</th>
+<th align="right">Hours</th>
+<th align="right">Rate</th>
+<th align="right">Cost</th>
+%for t in c[5]:
+<tr>
+<td>${t[0]}</td>
+<td align="right">${t[1]}</td>
+<td align="right">$${t[2]} / hr</td>
+<td align="right">$${t[3]}</td>
+</tr>
+%endfor
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td align="right">$${c[6]}</td>
+</tr>
+</table>
+
+
+</div>
+
+<fieldset>
+<legend>Generated Invoices</legend>
+%for t in invoices:
+<a href="invrender?inv=${t[0]}">${t[1]}</a><br>
+%endfor
+</fieldset>
+
+
+
+</div>
+<%include file="/footer.html"/>
+</html>

@@ -1,0 +1,64 @@
+<%include file="/header.html"/>
+<title>Child Detail</title>
+<div class="pagecontainer">
+<%include file="/buttons.html"/>
+
+	<fieldset>
+<Legend>Authorized to Pick Up and Drop Off</Legend>
+%for parent in p:
+<div class= "largerad solidb pwidth floatl ${parent[4]}" >
+${parent[0]}<br>
+${parent[1]}<br>
+${parent[2]}<br>
+<!-- ${parent[3]}<br> -->
+<br>
+${parent[5]}<br>
+</div>
+%endfor
+</fieldset>
+
+<fieldset>
+<Legend>Child</Legend>
+<div class="fcontainer">
+<div class="floatl">
+<table>
+<tr><td>Name: </td><td>${child[0]}</td></tr>
+<tr><td>DOB: </td><td>${child[1]}</td></tr>
+<tr><td>Restrictions: </td><td>${child[2]}</td></tr>
+<tr><td>Allergies: </td><td>${child[5]}</td></tr>
+</table>
+<a  class="ui-button ui-widget ui-corner-all"  href="invoice?rid=${rid}" target="_blank" >Invoice</a>
+<a  class="ui-button ui-widget ui-corner-all"  href="ledger?rid=${rid}" target="_blank" >Ledger</a>
+
+</div>
+<div class=" floatl">
+<a href='childedit?rid=${rid}'><img src="res/child/p${rid}.jpg" alt="${child[0]}"></a>
+</div>
+</div>
+</fieldset>
+
+
+<br>
+<a class="ui-button ui-widget ui-corner-all"  href="action?rid=${rid}&action=Bathroom">Bathroom Visit</a>
+<a class="ui-button ui-widget ui-corner-all"  href="action?rid=${rid}&action=Snack">Snack</a>
+<a class="ui-button ui-widget ui-corner-all"  href="action?rid=${rid}&action=Meal">Meal</a>
+<a class="ui-button ui-widget ui-corner-all"  href="action?rid=${rid}&action=Drink">Drink</a>
+<br>
+<form action='action' method=post>
+<input type=hidden name=rid value="${rid}">
+<input type=text name='action'>
+<input class="ui-button ui-widget ui-corner-all" type=submit value="Log Activity"> 
+</form>
+
+<br>
+<fieldset>
+<Legend>Today's Activity</Legend>
+<table>
+%for a in act:
+<tr><td>${a[0]}</td><td>${a[1]}</td></td>
+%endfor
+</table>
+</fieldset>
+
+</div>
+<%include file="/footer.html"/>
