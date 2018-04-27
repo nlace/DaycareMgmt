@@ -1,3 +1,6 @@
+# WIP
+
+This project was started as a challenge to use a sqlite database for a small production application (1-2) users. 
 
 
 # Installation and setup
